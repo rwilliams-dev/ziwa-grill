@@ -351,19 +351,51 @@
         footer p { font-size: 0.8rem; font-weight: 300; color: rgba(248,244,238,0.3); }
         footer span { color: var(--gold); }
 
+        .hamburger {
+    display: none;
+}
+
         @media (max-width: 768px) {
-            .about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
-            .menu-section { padding: 4rem 1.5rem; }
-            .contact { padding: 4rem 1.5rem; }
-            .contact-grid { gap: 2.5rem; }
-            .nav-links { display: none; }
-        }
+    .about { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+    .menu-section { padding: 4rem 1.5rem; }
+    .contact { padding: 4rem 1.5rem; }
+    .contact-grid { gap: 2.5rem; }
+
+    /* Hide nav links by default on mobile */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(28, 56, 41, 0.98);
+        padding: 1.5rem 2.5rem;
+        gap: 1rem;
+    }
+
+    /* Show nav links when open class is added */
+    .nav-links.open {
+        display: flex;
+    }
+
+    /* Show hamburger button on mobile */
+    .hamburger {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--gold);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
     </style>
 </head>
 <body>
 
     <nav>
         <a href="#" class="nav-logo">Ziwa Grill</a>
+        <button class="hamburger" onclick="toggleNav()">☰</button>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#menu">Menu</a></li>
@@ -482,6 +514,10 @@
                 `;
             }).join('');
         }
+
+        function toggleNav() {
+    document.querySelector('.nav-links').classList.toggle('open');
+}
 
         renderMenu('all');
     </script>
